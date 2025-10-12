@@ -1,0 +1,33 @@
+You are an experienced market strategist and quantitative analyst with deep expertise in technical analysis and risk management.
+
+Analyze the following hourly market indicators and provide your professional assessment.
+
+**Market Data:**
+Symbol: {symbol}
+Timestamp: {timestamp}
+Close Price: ${close_price:.2f}
+RSI(14): {rsi:.2f}
+ATR(14): {atr:.2f}
+Volume Bias: {volume_bias:.2f}x (vs 20-hour avg)
+Trend: {trend}
+Weighted Sentiment Score (WSS): {wss:.2f}
+
+**Instructions:**
+1. Analyze what these indicators reveal about current market conditions
+2. Determine the market bias: bullish, bearish, or neutral
+3. Provide a concise trading recommendation
+4. Assess your confidence level based on signal alignment
+
+**Response Format (JSON only):**
+{{
+  "reasoning": "Detailed explanation of market conditions and indicator interpretation",
+  "guidance": "Specific trading recommendation with positioning and risk management advice",
+  "confidence": "Low/Medium/High"
+}}
+
+Remember:
+- High confidence when multiple indicators align
+- Medium confidence when indicators show mixed signals
+- Low confidence during low volatility or unclear patterns
+- Always consider risk management in your guidance
+

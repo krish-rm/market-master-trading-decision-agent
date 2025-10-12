@@ -1,0 +1,41 @@
+# ===========================
+# Groq API Configuration
+# ===========================
+# Get your free API key from: https://console.groq.com/
+GROQ_API_KEY=your_groq_api_key_here
+
+# Groq Model Selection
+# Options: llama-3.1-8b-instant (default, fast), mixtral-8x7b-32768, llama-3.1-70b-versatile
+GROQ_MODEL=llama-3.1-8b-instant
+
+# ===========================
+# Market Data Configuration
+# ===========================
+# Comma-separated ticker symbols (no spaces)
+SYMBOLS=SPY,QQQ,AAPL
+
+# Historical data period (7 days for reliable hourly data)
+PERIOD=7d
+
+# Data interval (hourly)
+INTERVAL=1h
+
+# ===========================
+# Optional: LLM Parameters
+# ===========================
+# Temperature (0.0-1.0, higher = more creative)
+TEMPERATURE=0.7
+
+# Max tokens per response
+MAX_TOKENS=500
+
+# ===========================
+# Quick Setup Instructions
+# ===========================
+# 1. Get your free Groq API key: https://console.groq.com/
+# 2. Copy this file to .env
+# 3. Replace 'your_groq_api_key_here' with your actual API key
+# 4. Run: python run_pipeline.py
+#
+# That's it! Your agent will process market data with Groq's fast AI.
+
