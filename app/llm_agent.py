@@ -314,12 +314,12 @@ def main():
         features_df = pd.read_csv(config.FEATURES_FILE)
         features_df['timestamp'] = pd.to_datetime(features_df['timestamp'])
         
-        # Process features (limit to 100 for cost control in demo)
-        # Remove or adjust sample_size for production use
+        # Process features with balanced sample size for comprehensive analysis
+        # This gives good coverage across all symbols without excessive API calls
         outputs_df = process_features(
             features_df,
             agent,
-            sample_size=100  # Adjust or remove this parameter
+            sample_size=30  # 30 samples for comprehensive 1-hour analysis
         )
         
         # Save outputs

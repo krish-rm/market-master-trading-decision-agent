@@ -1,0 +1,87 @@
+{
+  "news_articles": [
+    {
+      "symbol": "SPY",
+      "title": "SPY Shows Strong Market Performance",
+      "description": "SPY demonstrates robust trading activity with positive momentum indicators.",
+      "url": "https://example.com/spy-news-1",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Financial News",
+      "similarity_score": 0.8
+    },
+    {
+      "symbol": "SPY",
+      "title": "Analysts Bullish on SPY Outlook",
+      "description": "Market analysts maintain positive outlook for SPY based on technical indicators.",
+      "url": "https://example.com/spy-news-2",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Analysis Report",
+      "similarity_score": 0.7
+    },
+    {
+      "symbol": "SPY",
+      "title": "SPY Trading Volume Above Average",
+      "description": "SPY experiences elevated trading volume indicating strong market interest.",
+      "url": "https://example.com/spy-news-3",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Market Data",
+      "similarity_score": 0.65
+    },
+    {
+      "symbol": "QQQ",
+      "title": "QQQ Shows Strong Market Performance",
+      "description": "QQQ demonstrates robust trading activity with positive momentum indicators.",
+      "url": "https://example.com/qqq-news-1",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Financial News",
+      "similarity_score": 0.8
+    },
+    {
+      "symbol": "QQQ",
+      "title": "Analysts Bullish on QQQ Outlook",
+      "description": "Market analysts maintain positive outlook for QQQ based on technical indicators.",
+      "url": "https://example.com/qqq-news-2",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Analysis Report",
+      "similarity_score": 0.7
+    },
+    {
+      "symbol": "QQQ",
+      "title": "QQQ Trading Volume Above Average",
+      "description": "QQQ experiences elevated trading volume indicating strong market interest.",
+      "url": "https://example.com/qqq-news-3",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Market Data",
+      "similarity_score": 0.65
+    },
+    {
+      "symbol": "AAPL",
+      "title": "AAPL Shows Strong Market Performance",
+      "description": "AAPL demonstrates robust trading activity with positive momentum indicators.",
+      "url": "https://example.com/aapl-news-1",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Financial News",
+      "similarity_score": 0.8
+    },
+    {
+      "symbol": "AAPL",
+      "title": "Analysts Bullish on AAPL Outlook",
+      "description": "Market analysts maintain positive outlook for AAPL based on technical indicators.",
+      "url": "https://example.com/aapl-news-2",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Analysis Report",
+      "similarity_score": 0.7
+    },
+    {
+      "symbol": "AAPL",
+      "title": "AAPL Trading Volume Above Average",
+      "description": "AAPL experiences elevated trading volume indicating strong market interest.",
+      "url": "https://example.com/aapl-news-3",
+      "published_at": "2025-10-14T23:25:31.141869",
+      "source": "Mock Market Data",
+      "similarity_score": 0.65
+    }
+  ],
+  "timestamp": "2025-10-14T23:25:31.141869",
+  "source": "simple_retriever"
+}

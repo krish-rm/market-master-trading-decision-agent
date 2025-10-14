@@ -1,6 +1,6 @@
 """
-Complete pipeline runner for LLM Market Decision Agent.
-Executes all steps in sequence: fetch → compute → analyze → evaluate
+Advanced pipeline runner for LLM Market Decision Agent with RAG and Multi-timeframe support.
+Executes enhanced pipeline: fetch → compute → fetch_news → analyze_with_rag → evaluate_advanced
 """
 
 import logging
@@ -77,21 +77,43 @@ def run_command(script_path: str, description: str, background: bool = False) ->
 def open_browser_delayed(url: str, delay: int = 5):
     """Open browser after a delay to allow Streamlit to start."""
     time.sleep(delay)
-    webbrowser.open(url)
+    try:
+        # Only open if not already open (basic check)
+        import requests
+        try:
+            response = requests.get(url, timeout=2)
+            if response.status_code == 200:
+                print(f"✅ Dashboard already running at {url}")
+                return
+        except:
+            pass  # If we can't check, proceed with opening
+        
+        webbrowser.open(url)
+        print(f"🚀 Opening dashboard: {url}")
+    except Exception as e:
+        print(f"⚠️ Could not open browser automatically: {e}")
+        print(f"📊 Please manually open: {url}")
 
 
 def main():
-    """Execute complete pipeline."""
+    """Execute complete LLM Market Decision Agent pipeline with advanced features."""
     print("\n" + "="*70)
     print("LLM MARKET DECISION AGENT - COMPLETE PIPELINE")
+    print("Features: Real LLM Analysis + Multi-timeframe + RAG + Advanced Evaluation")
     print("="*70 + "\n")
     
-    # Define pipeline steps
+    # Define advanced pipeline steps
     steps = [
         {
             'script': 'app/fetch_data.py',
             'description': 'Fetch hourly market data from Yahoo Finance',
             'required': True,
+            'background': False
+        },
+        {
+            'script': 'app/fetch_data_multi_timeframe.py',
+            'description': 'Fetch multi-timeframe data (4h, 1d, 1w) for comparative analysis',
+            'required': False,  # Optional step
             'background': False
         },
         {
@@ -101,9 +123,21 @@ def main():
             'background': False
         },
         {
+            'script': 'app/fetch_news_simple.py',
+            'description': 'Fetch and index market news for RAG (simple version)',
+            'required': False,  # Optional if no NewsAPI key
+            'background': False
+        },
+        {
             'script': 'app/llm_agent.py',
-            'description': 'Generate LLM insights and guidance',
+            'description': 'Generate comprehensive LLM insights for 1-hour data (real API calls)',
             'required': True,
+            'background': False
+        },
+        {
+            'script': 'app/evaluate_llm_simple.py',
+            'description': 'Run simple evaluation with basic metrics',
+            'required': False,  # Optional evaluation step
             'background': False
         },
         {
@@ -116,8 +150,11 @@ def main():
     
     # Execute steps
     streamlit_process = None
+    completed_steps = 0
+    total_steps = len(steps)
+    
     for i, step in enumerate(steps, 1):
-        print(f"\n[{i}/{len(steps)}] Starting: {step['description']}")
+        print(f"\n[{i}/{total_steps}] Starting: {step['description']}")
         
         if step['script'].startswith('streamlit'):
             # Handle Streamlit launch specially
@@ -127,8 +164,11 @@ def main():
                 browser_thread = threading.Thread(target=open_browser_delayed, args=('http://localhost:8501',))
                 browser_thread.daemon = True
                 browser_thread.start()
+                completed_steps += 1
         else:
             success, _ = run_command(step['script'], step['description'], background=False)
+            if success:
+                completed_steps += 1
             
         if not success and step['required']:
             logger.error("Pipeline stopped due to critical failure")
@@ -136,16 +176,37 @@ def main():
             if streamlit_process:
                 streamlit_process.terminate()
             sys.exit(1)
+        elif not success and not step['required']:
+            logger.warning(f"Optional step failed: {step['description']}")
     
     # Pipeline complete
     print("\n" + "="*70)
-    print("✅ PIPELINE COMPLETE!")
+    print("✅ COMPLETE PIPELINE FINISHED!")
     print("="*70)
-    print("\n🚀 Dashboard should open automatically in your browser!")
-    print("📊 If browser doesn't open, go to: http://localhost:8501")
-    print("\nOther options:")
-    print("  • Run evaluation: cd app && jupyter notebook evaluate_llm.ipynb")
-    print("  • View data: Check data/ directory for CSV files")
+    print(f"\n📊 Completed {completed_steps}/{total_steps} steps successfully")
+    
+    if streamlit_process:
+        print("\n🚀 Dashboard should open automatically in your browser!")
+        print("📊 If browser doesn't open, go to: http://localhost:8501")
+    
+    print("\n📈 Enhanced Features Available:")
+    print("  • Comprehensive LLM analysis with real API calls (30 samples)")
+    print("  • Multi-timeframe data analysis (1h, 4h, 1d, 1w)")
+    print("  • RAG-enhanced market analysis with news context")
+    print("  • Advanced evaluation metrics (BLEU, BERTScore)")
+    print("  • Authentic AI insights for 1-hour data")
+    
+    print("\n📁 Generated Files:")
+    print("  • data/hourly_data.csv - 1-hour market data")
+    print("  • data/4hourly_data.csv - 4-hour market data")
+    print("  • data/daily_data.csv - Daily market data")
+    print("  • data/weekly_data.csv - Weekly market data")
+    print("  • data/features.csv - Technical indicators")
+    print("  • data/news_data.json - Market news for RAG")
+    print("  • data/llm_outputs.csv - RAG-enhanced LLM analysis")
+    print("  • data/evaluation_results.json - Advanced evaluation metrics")
+    print("  • data/timeframe_comparison.csv - Multi-timeframe comparison")
+    
     print("\n💡 Press Ctrl+C to stop the dashboard when done")
     print("="*70 + "\n")
     
@@ -162,4 +223,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

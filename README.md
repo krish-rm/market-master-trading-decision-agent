@@ -27,77 +27,88 @@
 
 The **Market Master Trading Decision Agent** is an intelligent system that:
 
-1. **Fetches** hourly market data from Yahoo Finance (SPY, QQQ, AAPL)
-2. **Computes** technical indicators (RSI, ATR, Volume Bias, Trend, WSS)
-3. **Analyzes** market conditions using Groq's fast AI models
-4. **Generates** natural language reasoning and trading guidance
-5. **Evaluates** prediction quality and confidence calibration
-6. **Visualizes** insights through an interactive Streamlit dashboard
+1. **Fetches** multi-timeframe market data from Yahoo Finance (SPY, QQQ, AAPL)
+2. **Computes** comprehensive technical indicators (RSI, ATR, Volume Bias, Trend, WSS)
+3. **Integrates** real-time news context via RAG (Retrieval-Augmented Generation)
+4. **Analyzes** market conditions using Groq's fast AI models with authentic insights
+5. **Generates** natural language reasoning and contextual trading guidance
+6. **Evaluates** prediction quality using advanced metrics (BLEU, BERTScore, ROUGE-L)
+7. **Visualizes** insights through an interactive multi-timeframe dashboard
 
-This project demonstrates production-quality LLM engineering using Groq's free, fast API for market analysis.
+This project demonstrates production-quality LLM engineering with RAG, multi-timeframe analysis, and advanced evaluation using Groq's free, fast API for comprehensive market analysis.
 
 ---
 
 ## 🚨 Problem Statement
 
-**Challenge**: Traditional technical analysis requires expertise to interpret multiple indicators simultaneously. Retail traders often struggle to synthesize RSI, volume, volatility, and trend signals into actionable insights.
+**Challenge**: Traditional technical analysis requires expertise to interpret multiple indicators simultaneously. Retail traders often struggle to synthesize RSI, volume, volatility, and trend signals into actionable insights. Additionally, market analysis lacks real-time context integration and comprehensive evaluation across multiple timeframes.
 
-**Solution**: Leverage large language models (LLMs) to:
-- Interpret complex market indicators in natural language
-- Provide contextual trading guidance adapted to current conditions
-- Assign confidence levels based on signal alignment
-- Make quantitative analysis accessible to non-experts
+**Solution**: Leverage advanced LLM engineering with RAG and multi-timeframe analysis to:
+- Interpret complex market indicators in natural language with real-time news context
+- Provide contextual trading guidance adapted to current market conditions and news sentiment
+- Analyze market behavior across multiple timeframes (1h, 4h, 1d, 1w) for comprehensive insights
+- Assign confidence levels based on signal alignment and news influence
+- Evaluate analysis quality using advanced metrics (BLEU, BERTScore, ROUGE-L)
+- Make quantitative analysis accessible to non-experts with authentic AI-powered insights
 
 ---
 
 ## 🏗️ Solution Architecture
 
 ```
-┌─────────────────┐
-│  Yahoo Finance  │
-│   (OHLCV Data)  │
-└────────┬────────┘
-         │
-         v
-┌─────────────────────────┐
-│   Data Pipeline         │
-│  • fetch_data.py        │
-│  • compute_features.py  │
-└────────┬────────────────┘
+┌─────────────────┐    ┌──────────────────┐
+│  Yahoo Finance  │    │    NewsAPI       │
+│ (Multi-timeframe│    │ (Market News)    │
+│   OHLCV Data)   │    │                  │
+└────────┬────────┘    └────────┬─────────┘
+         │                      │
+         v                      v
+┌─────────────────────────┐    ┌─────────────────────────┐
+│   Data Pipeline         │    │   RAG Pipeline          │
+│  • fetch_data.py        │    │  • fetch_news.py        │
+│  • fetch_data_multi.py  │    │  • Vector Embeddings    │
+│  • compute_features.py  │    │  • FAISS Indexing       │
+└────────┬────────────────┘    └────────┬────────────────┘
+         │                              │
+         v                              │
+┌──────────────────────────┐           │
+│  Technical Indicators    │           │
+│  • RSI(14)               │           │
+│  • ATR(14)               │           │
+│  • Volume Bias           │           │
+│  • Trend (SMA slope)     │           │
+│  • WSS (weighted score)  │           │
+└────────┬─────────────────┘           │
+         │                              │
+         v                              v
+┌─────────────────────────────────────────────┐
+│         LLM Agent (Groq)                   │
+│  • RAG-Enhanced Prompt Engineering         │
+│  • News Context Integration                │
+│  • JSON Response Parsing                   │
+│  • Multi-timeframe Analysis                │
+│  • Authentic API Calls (30 samples)        │
+└────────┬────────────────────────────────────┘
          │
          v
 ┌──────────────────────────┐
-│  Technical Indicators    │
-│  • RSI(14)               │
-│  • ATR(14)               │
-│  • Volume Bias           │
-│  • Trend (SMA slope)     │
-│  • WSS (weighted score)  │
-└────────┬─────────────────┘
-         │
-         v
-┌──────────────────────────┐
-│   LLM Agent (Groq)     │
-│  • Prompt Engineering    │
-│  • JSON Response Parsing │
-│  • Fallback Logic        │
-└────────┬─────────────────┘
-         │
-         v
-┌──────────────────────────┐
-│  Outputs & Evaluation    │
+│  Advanced Evaluation     │
 │  • Reasoning Text        │
 │  • Trading Guidance      │
 │  • Confidence Level      │
-│  • ROUGE-L / Cosine Sim  │
-│  • Calibration Metrics   │
+│  • BLEU Score            │
+│  • BERTScore             │
+│  • ROUGE-L Metrics       │
+│  • News Influence Score  │
 └────────┬─────────────────┘
          │
          v
 ┌──────────────────────────┐
-│  Streamlit Dashboard     │
+│  Multi-Timeframe Dashboard│
 │  • Interactive Charts    │
-│  • LLM Insights          │
+│  • LLM Insights (1h only)│
+│  • News Context Display  │
+│  • Timeframe Comparison  │
 │  • Data Export           │
 └──────────────────────────┘
 ```
@@ -106,38 +117,54 @@ This project demonstrates production-quality LLM engineering using Groq's free, 
 
 ## ✨ Features
 
-### 🔹 Data Pipeline
-- Automated hourly data fetching from Yahoo Finance
-- Multi-symbol support (SPY, QQQ, AAPL, configurable)
-- Robust error handling and logging
+### 🔹 Advanced Data Pipeline
+- **Multi-timeframe Data Fetching**: Automated data collection (1h, 4h, 1d, 1w)
+- **Multi-symbol Support**: SPY, QQQ, AAPL with configurable symbols
+- **Comprehensive Coverage**: 7 days (1h), 30 days (4h), 90 days (1d), 365 days (1w)
+- **Robust Error Handling**: Graceful fallbacks and detailed logging
+- **Data Quality**: Consistent column naming and timezone handling
 
-### 🔹 Technical Analysis
-- **RSI (14)**: Momentum oscillator
-- **ATR (14)**: Volatility measure
-- **Volume Bias**: Current volume vs 20-hour average
-- **Trend**: 10-hour SMA slope direction
-- **WSS**: Weighted Sentiment Score (0-1 normalized composite)
+### 🔹 Technical Analysis Engine
+- **RSI (14)**: Momentum oscillator with overbought/oversold levels
+- **ATR (14)**: Volatility measure for risk assessment
+- **Volume Bias**: Current volume vs 20-hour average analysis
+- **Trend Detection**: 10-hour SMA slope direction classification
+- **WSS**: Weighted Sentiment Score (0-1 normalized composite indicator)
 
-### 🔹 LLM Integration
-- **Model**: Groq Llama 3.1 8B (fast and free)
-- **Prompt Engineering**: Market-specific system prompts
-- **Structured Output**: JSON with reasoning, guidance, confidence
-- **Fallback Mode**: Rule-based responses when API unavailable
-- **Rate Limiting**: Respectful API usage
+### 🔹 Authentic LLM Integration
+- **Model**: Groq Llama 3.1 8B (fast, free, and reliable)
+- **Real API Calls**: Authentic AI analysis with 30 comprehensive samples
+- **Advanced Prompt Engineering**: Market-specific system prompts with context
+- **Structured Output**: JSON with reasoning, guidance, confidence, news influence
+- **Symbol-Specific Analysis**: Tailored insights for AAPL, QQQ, SPY characteristics
+- **Fallback System**: Robust rule-based responses when API unavailable
 
-### 🔹 Evaluation Framework
-- **ROUGE-L**: Text similarity vs reference reasoning
-- **Cosine Similarity**: Semantic similarity using TF-IDF
-- **Confidence Calibration**: Accuracy by confidence level
-- **Consistency Analysis**: Behavior across market conditions
-- **Quality Metrics**: Automated evaluation of AI recommendations
+### 🔹 RAG (Retrieval-Augmented Generation)
+- **Real-time News Integration**: NewsAPI for current market context
+- **Vector Embeddings**: Sentence transformers for semantic news search
+- **Contextual Analysis**: LLM reasoning enhanced with relevant news articles
+- **FAISS Indexing**: Fast similarity search for news retrieval
+- **News Influence Tracking**: Quantified impact of news on trading decisions
+- **Mock Data Support**: Demo functionality when NewsAPI unavailable
 
-### 🔹 Interactive Dashboard
-- Real-time price and indicator charts
-- LLM-generated insights display
-- Confidence-based color coding
-- Exportable data tables
-- Multi-symbol and date range filtering
+### 🔹 Advanced Evaluation Framework
+- **BLEU Score**: N-gram precision for text quality assessment
+- **BERTScore**: Contextual similarity using transformer embeddings
+- **ROUGE-L Metrics**: Text similarity vs reference reasoning
+- **Cosine Similarity**: TF-IDF based semantic similarity analysis
+- **Confidence Calibration**: Accuracy analysis by confidence level
+- **Multi-timeframe Comparison**: Performance evaluation across time horizons
+- **Consistency Analysis**: Behavior patterns across different market conditions
+
+### 🔹 Multi-Timeframe Dashboard
+- **Interactive Charts**: Candlestick charts with technical indicators
+- **LLM Insights Display**: Real AI analysis (1h timeframe only)
+- **News Context Integration**: RAG-enhanced analysis visualization
+- **Timeframe Comparison**: Side-by-side analysis across 1h, 4h, 1d, 1w
+- **Smart Navigation**: Clear guidance on available vs unavailable features
+- **Data Export**: CSV download for all timeframes and analysis
+- **Confidence-based Color Coding**: Visual confidence level indicators
+- **Multi-symbol Support**: Switch between SPY, QQQ, AAPL seamlessly
 
 ---
 
@@ -190,9 +217,9 @@ docker-compose up -d
 
 ## 🚀 Usage
 
-### Option 1: Complete Pipeline (Recommended)
+### Complete Pipeline (Recommended)
 
-Run the entire pipeline in one command:
+Run the complete pipeline with all advanced features:
 
 ```bash
 python run_pipeline.py
@@ -200,60 +227,18 @@ python run_pipeline.py
 
 **What it does:**
 1. ✅ Fetches hourly market data from Yahoo Finance
-2. ✅ Computes technical indicators and WSS
-3. ✅ Generates LLM insights and guidance
-4. ✅ Launches Streamlit dashboard and opens browser automatically
+2. ✅ Fetches multi-timeframe data (4h, 1d, 1w) for comparative analysis
+3. ✅ Computes technical indicators and WSS
+4. ✅ Fetches and indexes market news for RAG (Retrieval-Augmented Generation)
+5. ✅ Generates RAG-enhanced LLM insights with news context
+6. ✅ Runs advanced evaluation with BLEU, BERTScore metrics
+7. ✅ Launches Streamlit dashboard and opens browser automatically
 
-**Output**: Complete dataset ready for analysis + dashboard running at http://localhost:8501
+**Output**: Complete enhanced dataset + RAG analysis + dashboard at http://localhost:8501
 
-**Optional Next Step:**
-📊 Run evaluation: `cd app && jupyter notebook evaluate_llm.ipynb`
+### Step-by-Step Execution (Advanced Users)
 
-**Example Output:**
-```
-======================================================================
-LLM MARKET DECISION AGENT - COMPLETE PIPELINE
-======================================================================
-
-[1/3] Starting: Fetch hourly market data from Yahoo Finance
-======================================================================
-STEP: Fetch hourly market data from Yahoo Finance
-======================================================================
-✅ Fetched 1,440 hourly bars for SPY, QQQ, AAPL
-✅ Fetch hourly market data from Yahoo Finance completed successfully
-
-[2/3] Starting: Compute technical indicators and WSS
-======================================================================
-STEP: Compute technical indicators and WSS
-======================================================================
-✅ Computed features for 1,440 rows
-✅ Compute technical indicators and WSS completed successfully
-
-[3/4] Starting: Generate LLM insights and guidance
-======================================================================
-STEP: Generate LLM insights and guidance
-======================================================================
-✅ Generated LLM outputs for 100 samples
-✅ Generate LLM insights and guidance completed successfully
-
-[4/4] Starting: Launch Streamlit dashboard
-======================================================================
-STEP: Launch Streamlit dashboard
-======================================================================
-✅ Launch Streamlit dashboard started in background
-
-======================================================================
-✅ PIPELINE COMPLETE!
-======================================================================
-
-🚀 Dashboard should open automatically in your browser!
-📊 If browser doesn't open, go to: http://localhost:8501
-
-💡 Press Ctrl+C to stop the dashboard when done
-======================================================================
-```
-
-### Option 2: Step-by-Step Execution
+If you prefer to run individual steps for debugging or customization:
 
 #### Step 1: Fetch Market Data
 
@@ -572,43 +557,48 @@ Open browser to `http://localhost:8501`
 ## 🔮 Future Enhancements
 
 ### Phase 1: Enhanced LLM Features
-- [ ] **RAG Integration**: Fetch real-time news headlines via NewsAPI
 - [ ] **Multi-Persona Prompts**: Bull/Bear/Risk Manager perspectives
-- [ ] **Chain-of-Thought**: Explicit reasoning steps
-- [ ] **Few-Shot Examples**: Include historical patterns in prompt
+- [ ] **Chain-of-Thought**: Explicit reasoning steps with intermediate calculations
+- [ ] **Few-Shot Examples**: Include historical patterns and successful trades in prompts
+- [ ] **Dynamic Prompt Adaptation**: Adjust prompts based on market volatility
 
 ### Phase 2: Advanced Analytics
-- [ ] **Backtesting Framework**: Test LLM guidance on historical data
-- [ ] **Portfolio Simulation**: Multi-symbol position management
-- [ ] **Risk Metrics**: Sharpe ratio, max drawdown tracking
-- [ ] **Sentiment Analysis**: Integrate social media/news sentiment
+- [ ] **Backtesting Framework**: Test LLM guidance on historical data with P&L tracking
+- [ ] **Portfolio Simulation**: Multi-symbol position management with risk controls
+- [ ] **Risk Metrics**: Sharpe ratio, max drawdown, VaR tracking
+- [ ] **Sentiment Analysis**: Integrate social media/Twitter sentiment with news
+- [ ] **Market Regime Detection**: Identify bull/bear/sideways market conditions
 
 ### Phase 3: Production Features
-- [ ] **Real-Time Streaming**: WebSocket data updates
+- [ ] **Real-Time Streaming**: WebSocket data updates for live market analysis
 - [ ] **Alert System**: Email/SMS notifications for high-confidence signals
-- [ ] **Multi-Timeframe Analysis**: 1h, 4h, 1d aggregation
-- [ ] **API Endpoint**: FastAPI REST service
-- [ ] **User Authentication**: Multi-user support with saved preferences
+- [ ] **API Endpoint**: FastAPI REST service for external integrations
+- [ ] **User Authentication**: Multi-user support with saved preferences and watchlists
+- [ ] **Performance Monitoring**: Real-time pipeline health and latency tracking
 
-### Phase 4: Research
-- [ ] **LLM Fine-Tuning**: Train on historical market commentary
-- [ ] **Ensemble Methods**: Combine multiple LLM responses
-- [ ] **Reinforcement Learning**: RLHF for trading performance
-- [ ] **Explainability**: LIME/SHAP for indicator importance
+### Phase 4: Research & Advanced AI
+- [ ] **LLM Fine-Tuning**: Train on historical market commentary and trading outcomes
+- [ ] **Ensemble Methods**: Combine multiple LLM responses for consensus analysis
+- [ ] **Reinforcement Learning**: RLHF for trading performance optimization
+- [ ] **Explainability**: LIME/SHAP for indicator importance and decision transparency
+- [ ] **Graph Neural Networks**: Model market relationships and contagion effects
 
 ---
 
 ## 🎓 Educational Value
 
-This project demonstrates key LLM engineering concepts:
+This project demonstrates advanced LLM engineering and production-ready concepts:
 
-1. **Prompt Engineering**: Structured market analysis prompts
-2. **Output Parsing**: Robust JSON extraction with fallbacks
-3. **Evaluation**: Quantitative metrics (ROUGE-L, calibration)
-4. **RAG Architecture**: Potential for news/headline integration
-5. **Production Patterns**: Logging, error handling, rate limiting
-6. **Containerization**: Docker for reproducibility
-7. **Data Pipelines**: ETL from API → Features → LLM → UI
+1. **Advanced Prompt Engineering**: Market-specific prompts with RAG context integration
+2. **Robust Output Parsing**: JSON extraction with comprehensive fallback systems
+3. **Multi-Metric Evaluation**: BLEU, BERTScore, ROUGE-L for comprehensive assessment
+4. **RAG Architecture**: Real-time news integration with vector embeddings and FAISS
+5. **Multi-Timeframe Analysis**: Complex data aggregation across different time horizons
+6. **Production Patterns**: Logging, error handling, rate limiting, graceful degradation
+7. **Containerization**: Docker for reproducible deployments
+8. **Advanced Data Pipelines**: ETL from multiple APIs → Features → RAG → LLM → Dashboard
+9. **Fallback Systems**: Robust error handling with mock data for demo functionality
+10. **Interactive Dashboards**: Streamlit with timeframe-aware navigation and smart UX
 
 ---
 
@@ -616,18 +606,19 @@ This project demonstrates key LLM engineering concepts:
 
 | Criterion | Implementation | Status |
 |-----------|----------------|--------|
-| **Problem Description** | Market signal interpretation using LLM | ✅ |
-| **LLM Integration** | Groq AI for reasoning generation | ✅ |
-| **Retrieval Mechanism** | Technical indicator aggregation (RAG-ready) | ✅ |
-| **Database** | CSV-based data storage (scalable to PostgreSQL) | ✅ |
-| **Evaluation** | ROUGE-L, Cosine Sim, Calibration | ✅ |
-| **Interface** | Streamlit dashboard + CLI | ✅ |
-| **Ingestion Pipeline** | Yahoo Finance → Features → LLM | ✅ |
-| **Monitoring** | Confidence tracking, evaluation notebook | ✅ |
-| **Containerization** | Dockerfile + docker-compose | ✅ |
-| **Reproducibility** | requirements.txt, detailed README | ✅ |
-| **Code Quality** | Type hints, docstrings, logging | ✅ |
-| **Best Practices** | Modular design, config-driven | ✅ |
+| **Problem Description** | Advanced market analysis with RAG and multi-timeframe | ✅ |
+| **LLM Integration** | Groq AI with authentic API calls and RAG enhancement | ✅ |
+| **Retrieval Mechanism** | Real-time news RAG with vector embeddings + FAISS | ✅ |
+| **Database** | Multi-timeframe CSV storage with comprehensive coverage | ✅ |
+| **Evaluation** | BLEU, BERTScore, ROUGE-L, Cosine Sim, Calibration | ✅ |
+| **Interface** | Multi-timeframe Streamlit dashboard with smart navigation | ✅ |
+| **Ingestion Pipeline** | Multi-API → Features → RAG → LLM → Dashboard | ✅ |
+| **Monitoring** | Confidence tracking, evaluation metrics, news influence | ✅ |
+| **Containerization** | Dockerfile + docker-compose with fallback systems | ✅ |
+| **Reproducibility** | Comprehensive requirements.txt, detailed documentation | ✅ |
+| **Code Quality** | Type hints, docstrings, logging, error handling | ✅ |
+| **Best Practices** | Modular design, config-driven, graceful degradation | ✅ |
+| **Advanced Features** | RAG, Multi-timeframe, Advanced Evaluation, Fallbacks | ✅ |
 
 ---
 

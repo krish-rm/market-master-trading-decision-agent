@@ -1,0 +1,36 @@
+# LLM Market Decision Agent - Simple Evaluation Report
+
+## Summary
+
+- **Total Samples**: 30
+- **API Mode Usage**: 0.0%
+
+### Confidence Distribution:
+- Medium: 29
+- High: 1
+
+## Text Quality Metrics
+
+### Basic Similarity Score
+- **Mean**: 0.121 ± 0.033
+- **Range**: 0.000 - 0.167
+
+## Confidence Calibration
+
+### High Confidence
+- **Count**: 1
+- **Accuracy**: 75.0%
+- **Avg WSS**: 0.241
+### Medium Confidence
+- **Count**: 29
+- **Accuracy**: 60.0%
+- **Avg WSS**: 0.365
+
+## Consistency Analysis
+
+### Bearish Market Conditions
+- **Count**: 16
+- **Avg WSS**: 0.268
+### Neutral Market Conditions
+- **Count**: 14
+- **Avg WSS**: 0.466

@@ -1,0 +1,57 @@
+======================================================================
+MULTI-TIMEFRAME DATA ANALYSIS REPORT
+======================================================================
+
+## Data Summary
+
+### 4H Timeframe
+- Interval: 4h
+- Period: 30d
+- Total Rows: 180
+- Symbols: AAPL, QQQ, SPY
+- Date Range: 2025-09-03 09:30:00-04:00 to 2025-10-14 13:30:00-04:00
+- Price Statistics:
+  * AAPL: Mean=$246.57, Std=$9.53
+  * QQQ: Mean=$594.01, Std=$10.99
+  * SPY: Mean=$660.74, Std=$7.86
+
+### 1D Timeframe
+- Interval: 1d
+- Period: 90d
+- Total Rows: 270
+- Symbols: AAPL, QQQ, SPY
+- Date Range: 2025-06-06 00:00:00-04:00 to 2025-10-14 00:00:00-04:00
+- Price Statistics:
+  * AAPL: Mean=$224.32, Std=$19.34
+  * QQQ: Mean=$568.89, Std=$22.86
+  * SPY: Mean=$635.69, Std=$22.32
+
+### 1W Timeframe
+- Interval: 1wk
+- Period: 365d
+- Total Rows: 231
+- Symbols: AAPL, QQQ, SPY
+- Date Range: 2024-04-29 00:00:00-04:00 to 2025-10-13 00:00:00-04:00
+- Price Statistics:
+  * AAPL: Mean=$220.97, Std=$18.62
+  * QQQ: Mean=$506.78, Std=$45.41
+  * SPY: Mean=$579.50, Std=$42.76
+
+## Comparative Analysis
+
+### Timeframe Comparison Table
+
+timeframe  total_rows  symbols  date_range_days   avg_volume  price_volatility  AAPL_price_change_pct  AAPL_volume_trend  QQQ_price_change_pct  QQQ_volume_trend  SPY_price_change_pct  SPY_volume_trend
+       4h         180        3               41 2.556588e+07          9.458317               4.267749       2.033915e+07              5.677380      2.278752e+07              3.589611      3.357098e+07
+       1d         270        3              130 5.801969e+07         21.505636              21.538329       5.434839e+07             13.797173      4.774033e+07             11.684652      7.197034e+07
+       1w         231        3              532 2.472185e+08         35.595699              35.967951       2.651324e+08             39.322106      1.900030e+08             32.540050      2.865202e+08
+
+## Recommendations
+
+1. **1h timeframe**: Best for intraday trading and short-term analysis
+2. **4h timeframe**: Good balance for swing trading strategies
+3. **1d timeframe**: Ideal for position trading and trend analysis
+4. **1w timeframe**: Best for long-term investment decisions
+
+Consider running LLM analysis on multiple timeframes to get
+comprehensive market insights across different trading horizons.
