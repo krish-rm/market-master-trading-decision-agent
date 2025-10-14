@@ -202,12 +202,12 @@ python run_pipeline.py
 1. ✅ Fetches hourly market data from Yahoo Finance
 2. ✅ Computes technical indicators and WSS
 3. ✅ Generates LLM insights and guidance
+4. ✅ Launches Streamlit dashboard and opens browser automatically
 
-**Output**: Complete dataset ready for analysis in `data/` directory
+**Output**: Complete dataset ready for analysis + dashboard running at http://localhost:8501
 
-**Next Steps** (after pipeline completes):
-4. 📊 Run evaluation: `cd app && jupyter notebook evaluate_llm.ipynb`
-5. 🚀 Launch dashboard: `streamlit run app/streamlit_app.py`
+**Optional Next Step:**
+📊 Run evaluation: `cd app && jupyter notebook evaluate_llm.ipynb`
 
 **Example Output:**
 ```
@@ -229,15 +229,27 @@ STEP: Compute technical indicators and WSS
 ✅ Computed features for 1,440 rows
 ✅ Compute technical indicators and WSS completed successfully
 
-[3/3] Starting: Generate LLM insights and guidance
+[3/4] Starting: Generate LLM insights and guidance
 ======================================================================
 STEP: Generate LLM insights and guidance
 ======================================================================
 ✅ Generated LLM outputs for 100 samples
 ✅ Generate LLM insights and guidance completed successfully
 
+[4/4] Starting: Launch Streamlit dashboard
+======================================================================
+STEP: Launch Streamlit dashboard
+======================================================================
+✅ Launch Streamlit dashboard started in background
+
 ======================================================================
 ✅ PIPELINE COMPLETE!
+======================================================================
+
+🚀 Dashboard should open automatically in your browser!
+📊 If browser doesn't open, go to: http://localhost:8501
+
+💡 Press Ctrl+C to stop the dashboard when done
 ======================================================================
 ```
 

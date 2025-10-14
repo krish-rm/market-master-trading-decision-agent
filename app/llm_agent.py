@@ -7,7 +7,7 @@ import logging
 import pandas as pd
 import json
 import time
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Optional
 from pathlib import Path
 from groq import Groq
 import config
@@ -344,8 +344,13 @@ def main():
         for _, row in outputs_df.head(3).iterrows():
             print(f"\n{row['symbol']} @ {row['timestamp']}")
             print(f"WSS: {row['wss']:.2f} | Trend: {row['trend']} | Confidence: {row['confidence']}")
-            print(f"Reasoning: {row['reasoning'][:150]}...")
-            print(f"Guidance: {row['guidance'][:150]}...")
+            
+            # Safely handle string slicing
+            reasoning = str(row['reasoning']) if row['reasoning'] is not None else "No reasoning provided"
+            guidance = str(row['guidance']) if row['guidance'] is not None else "No guidance provided"
+            
+            print(f"Reasoning: {reasoning[:150]}...")
+            print(f"Guidance: {guidance[:150]}...")
             print("-" * 60)
         
     except Exception as e:
