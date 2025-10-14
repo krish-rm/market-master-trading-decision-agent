@@ -9,7 +9,6 @@
 - [Overview](#-overview)
 - [Problem Statement](#-problem-statement)
 - [Solution Architecture](#-solution-architecture)
-- [Quick Start](#-quick-start-5-minutes)
 - [Features](#-features)
 - [Detailed Installation](#-installation)
 - [Usage](#-usage)
@@ -26,7 +25,7 @@
 
 ## 🎯 Overview
 
-The **LLM Market Decision Agent** is an intelligent system that:
+The **Market Master Trading Decision Agent** is an intelligent system that:
 
 1. **Fetches** hourly market data from Yahoo Finance (SPY, QQQ, AAPL)
 2. **Computes** technical indicators (RSI, ATR, Volume Bias, Trend, WSS)
@@ -78,7 +77,7 @@ This project demonstrates production-quality LLM engineering using Groq's free, 
          │
          v
 ┌──────────────────────────┐
-│   LLM Agent (GPT-4o)     │
+│   LLM Agent (Groq)     │
 │  • Prompt Engineering    │
 │  • JSON Response Parsing │
 │  • Fallback Logic        │
@@ -101,40 +100,6 @@ This project demonstrates production-quality LLM engineering using Groq's free, 
 │  • LLM Insights          │
 │  • Data Export           │
 └──────────────────────────┘
-```
-
----
-
-## ⚡ Quick Start (5 Minutes)
-
-### 1. Get Your Free Groq API Key
-Visit [console.groq.com](https://console.groq.com/), sign up (free), and create an API key.
-
-### 2. Clone & Setup
-```bash
-git clone https://github.com/your-username/market-master-trading-decision-agent.git
-cd market-master-trading-decision-agent
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-### 3. Configure
-Create `.env` file:
-```bash
-GROQ_API_KEY=your_groq_key_here
-```
-
-### 4. Run Pipeline
-```bash
-python run_pipeline.py
-```
-
-That's it! The agent will fetch market data, compute indicators, and generate AI trading insights in ~5-8 minutes.
-
-### 5. View Results
-```bash
-streamlit run app/streamlit_app.py
 ```
 
 ---
@@ -225,7 +190,60 @@ docker-compose up -d
 
 ## 🚀 Usage
 
-### Step 1: Fetch Market Data
+### Option 1: Complete Pipeline (Recommended)
+
+Run the entire pipeline in one command:
+
+```bash
+python run_pipeline.py
+```
+
+**What it does:**
+1. ✅ Fetches hourly market data from Yahoo Finance
+2. ✅ Computes technical indicators and WSS
+3. ✅ Generates LLM insights and guidance
+
+**Output**: Complete dataset ready for analysis in `data/` directory
+
+**Next Steps** (after pipeline completes):
+4. 📊 Run evaluation: `cd app && jupyter notebook evaluate_llm.ipynb`
+5. 🚀 Launch dashboard: `streamlit run app/streamlit_app.py`
+
+**Example Output:**
+```
+======================================================================
+LLM MARKET DECISION AGENT - COMPLETE PIPELINE
+======================================================================
+
+[1/3] Starting: Fetch hourly market data from Yahoo Finance
+======================================================================
+STEP: Fetch hourly market data from Yahoo Finance
+======================================================================
+✅ Fetched 1,440 hourly bars for SPY, QQQ, AAPL
+✅ Fetch hourly market data from Yahoo Finance completed successfully
+
+[2/3] Starting: Compute technical indicators and WSS
+======================================================================
+STEP: Compute technical indicators and WSS
+======================================================================
+✅ Computed features for 1,440 rows
+✅ Compute technical indicators and WSS completed successfully
+
+[3/3] Starting: Generate LLM insights and guidance
+======================================================================
+STEP: Generate LLM insights and guidance
+======================================================================
+✅ Generated LLM outputs for 100 samples
+✅ Generate LLM insights and guidance completed successfully
+
+======================================================================
+✅ PIPELINE COMPLETE!
+======================================================================
+```
+
+### Option 2: Step-by-Step Execution
+
+#### Step 1: Fetch Market Data
 
 ```bash
 python app/fetch_data.py
@@ -239,7 +257,7 @@ python app/fetch_data.py
 📊 Date range: 2024-08-01 to 2024-10-06
 ```
 
-### Step 2: Compute Features
+#### Step 2: Compute Features
 
 ```bash
 python app/compute_features.py
@@ -252,7 +270,7 @@ python app/compute_features.py
 |-----------|--------|-------|-----|-----|-------------|-------|-----|
 | 2024-10-06 14:00 | SPY | 572.14 | 62.3 | 2.41 | 1.15 | up | 0.74 |
 
-### Step 3: Generate LLM Insights
+#### Step 3: Generate LLM Insights
 
 ```bash
 python app/llm_agent.py
