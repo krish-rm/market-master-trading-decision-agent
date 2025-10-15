@@ -465,29 +465,46 @@ Evaluates whether similar market conditions yield similar LLM responses.
 market-master-trading-decision-agent/
 │
 ├── data/                           # Generated data (gitignored)
-│   ├── hourly_data.csv            # Raw OHLCV data
-│   ├── features.csv               # Technical indicators
-│   ├── llm_outputs.csv            # LLM insights
-│   └── evaluation_results.json    # Evaluation metrics
+│   ├── hourly_data.csv            # Raw OHLCV data (1h timeframe)
+│   ├── 4hourly_data.csv           # 4h timeframe data
+│   ├── daily_data.csv              # Daily timeframe data
+│   ├── weekly_data.csv             # Weekly timeframe data
+│   ├── features.csv                # Technical indicators
+│   ├── llm_outputs.csv             # LLM insights (latest 20 per symbol)
+│   ├── news_data.json             # Market news for RAG
+│   ├── evaluation_results.json     # Evaluation metrics
+│   ├── timeframe_comparison.csv    # Multi-timeframe analysis
+│   └── timeframe_analysis_report.txt # Analysis report
 │
 ├── app/                           # Main application code
 │   ├── config.py                  # Configuration and constants
-│   ├── fetch_data.py              # Yahoo Finance data fetcher
+│   ├── fetch_data.py              # Yahoo Finance data fetcher (1h)
+│   ├── fetch_data_multi_timeframe.py # Multi-timeframe data fetcher
 │   ├── compute_features.py        # Technical indicator computation
-│   ├── llm_agent.py               # Groq AI integration
-│   ├── streamlit_app.py           # Interactive dashboard
+│   ├── llm_agent.py               # Groq AI integration (latest 20 per symbol)
+│   ├── llm_agent_rag.py          # RAG-enhanced LLM agent
+│   ├── llm_agent_simple.py       # Simple LLM agent
+│   ├── fetch_news.py              # News fetcher with RAG
+│   ├── fetch_news_simple.py       # Simple news fetcher
+│   ├── evaluate_llm_advanced.py   # Advanced evaluation
+│   ├── evaluate_llm_simple.py     # Simple evaluation
 │   ├── evaluate_llm.ipynb         # Evaluation notebook
-│   └── generate_evaluation_notebook.py  # Notebook builder
+│   ├── generate_evaluation_notebook.py # Notebook builder
+│   └── streamlit_app.py           # Interactive dashboard
 │
 ├── prompts/                       # LLM prompt templates
 │   └── decision_prompt.txt        # Market analysis prompt
 │
-├── requirements.txt               # Python dependencies
-├── Dockerfile                     # Container definition
-├── docker-compose.yml             # Multi-container orchestration
-├── .dockerignore                  # Docker build exclusions
-├── .gitignore                     # Git exclusions
-└── README.md                      # This file
+├── run_pipeline.py               # Complete pipeline runner
+├── requirements.txt              # Python dependencies
+├── Dockerfile                    # Container definition
+├── docker-compose.yml            # Multi-container orchestration
+├── .dockerignore                 # Docker build exclusions
+├── .gitignore                    # Git exclusions
+├── ENV_EXAMPLE.txt              # Environment variables template
+├── CONTRIBUTING.md              # Contribution guidelines
+├── LICENSE                      # MIT License
+└── README.md                    # This file
 ```
 
 ---
