@@ -98,7 +98,7 @@ def open_browser_delayed(url: str, delay: int = 5):
 def main():
     """Execute complete LLM Market Decision Agent pipeline with advanced features."""
     print("\n" + "="*70)
-    print("LLM MARKET DECISION AGENT - COMPLETE PIPELINE")
+    print("MARKET MASTER TRADING DECISION AGENT - COMPLETE PIPELINE")
     print("Features: Real LLM Analysis + Multi-timeframe + RAG + Advanced Evaluation")
     print("="*70 + "\n")
     

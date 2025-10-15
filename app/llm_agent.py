@@ -253,12 +253,21 @@ def process_features(
     """
     logger.info("Processing features through LLM agent...")
     
-    # Sample if requested
-    if sample_size and sample_size < len(features_df):
-        logger.info(f"Sampling {sample_size} rows from {len(features_df)} total")
-        df_to_process = features_df.sample(n=sample_size, random_state=42)
-    else:
-        df_to_process = features_df
+    # Always process the latest N rows per symbol (default: 20)
+    latest_n = 20 if sample_size is None else sample_size
+    logger.info(f"Selecting latest {latest_n} rows per symbol for processing")
+
+    # Ensure timestamp is datetime
+    if not pd.api.types.is_datetime64_any_dtype(features_df['timestamp']):
+        features_df['timestamp'] = pd.to_datetime(features_df['timestamp'])
+
+    # Sort by timestamp descending per symbol and take the first N (latest)
+    features_df_sorted = features_df.sort_values(['symbol', 'timestamp'], ascending=[True, False])
+    df_to_process = (
+        features_df_sorted.groupby('symbol', as_index=False, group_keys=False)
+        .apply(lambda g: g.head(latest_n))
+        .reset_index(drop=True)
+    )
     
     results = []
     total = len(df_to_process)

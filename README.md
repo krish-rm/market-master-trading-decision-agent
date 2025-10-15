@@ -71,14 +71,14 @@ This project demonstrates production-quality LLM engineering with RAG, multi-tim
 └────────┬────────────────┘    └────────┬────────────────┘
          │                              │
          v                              │
-┌──────────────────────────┐           │
-│  Technical Indicators    │           │
-│  • RSI(14)               │           │
-│  • ATR(14)               │           │
-│  • Volume Bias           │           │
-│  • Trend (SMA slope)     │           │
-│  • WSS (weighted score)  │           │
-└────────┬─────────────────┘           │
+┌──────────────────────────┐            │
+│  Technical Indicators    │            │
+│  • RSI(14)               │            │
+│  • ATR(14)               │            │
+│  • Volume Bias           │            │
+│  • Trend (SMA slope)     │            │
+│  • WSS (weighted score)  │            │
+└────────┬─────────────────┘            │
          │                              │
          v                              v
 ┌─────────────────────────────────────────────┐
@@ -106,7 +106,7 @@ This project demonstrates production-quality LLM engineering with RAG, multi-tim
 ┌──────────────────────────┐
 │  Multi-Timeframe Dashboard│
 │  • Interactive Charts    │
-│  • LLM Insights (1h only)│
+│  • LLM Insights (1h latest only)│
 │  • News Context Display  │
 │  • Timeframe Comparison  │
 │  • Data Export           │
@@ -158,9 +158,9 @@ This project demonstrates production-quality LLM engineering with RAG, multi-tim
 
 ### 🔹 Multi-Timeframe Dashboard
 - **Interactive Charts**: Candlestick charts with technical indicators
-- **LLM Insights Display**: Real AI analysis (1h timeframe only)
+- **LLM Insights Display (1h latest only)**: Dashboard shows only the most recent 20 hourly insights per symbol (SPY, QQQ, AAPL), sorted newest-first
 - **News Context Integration**: RAG-enhanced analysis visualization
-- **Timeframe Comparison**: Side-by-side analysis across 1h, 4h, 1d, 1w
+- **Timeframe Comparison**: Side-by-side analysis across 1h, 4h, 1d, 1w (for charts only). Note: non-1h LLM insights are not displayed
 - **Smart Navigation**: Clear guidance on available vs unavailable features
 - **Data Export**: CSV download for all timeframes and analysis
 - **Confidence-based Color Coding**: Visual confidence level indicators
@@ -190,13 +190,19 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Create .env file
-# Create .env file with your Groq API key
-# Get free key at: https://console.groq.com/
 cp ENV_EXAMPLE.txt .env
-# Edit .env and add: GROQ_API_KEY=your_key_here
-echo "SYMBOLS=SPY,QQQ,AAPL" >> .env
-echo "PERIOD=7d" >> .env
-echo "INTERVAL=1h" >> .env
+
+# Edit .env and set required keys
+# Groq (required)
+#   GROQ_API_KEY=your_groq_key_here
+#   GROQ_MODEL=llama-3.1-8b-instant
+# Data (1h timeframe only)
+#   SYMBOLS=SPY,QQQ,AAPL
+#   PERIOD=7d
+#   INTERVAL=1h
+# News (optional, for RAG in dashboard)
+#   NEWSAPI_KEY=your_newsapi_key_here
+#   NEWS_HOURS_BACK=24
 ```
 
 ### Option 2: Docker Setup
@@ -382,6 +388,21 @@ else:
 
 ---
 
+## ⏱️ Why Only Latest 1-Hour LLM Insights
+
+We intentionally display only the latest 1-hour insights in the dashboard:
+
+- Freshness: Markets change quickly; the most recent hourly bars are most actionable
+- Consistency: Equal, recent coverage (20 latest bars) across SPY, QQQ, AAPL
+- Clarity: Avoids clutter from older or mixed timeframe insights
+
+Notes:
+- Dashboard LLM cards are from 1h timeframe only (latest 20 per symbol, newest-first)
+- 4h / 1d / 1w insights are not generated or shown in the dashboard
+- Non-1h timeframes remain available for chart comparison only
+
+---
+
 ## 📊 Evaluation Methodology
 
 ### 1. ROUGE-L Score
@@ -475,7 +496,8 @@ market-master-trading-decision-agent/
 
 **Features**:
 - 📈 Price and indicator charts (Plotly)
-- 🤖 LLM insights with confidence badges
+- 🤖 LLM insights (latest 20 hourly per symbol, newest-first) with confidence badges
+- 📰 News context per symbol: up to 5 recent articles (requires NEWSAPI_KEY)
 - 📊 Multi-symbol comparison
 - 📥 CSV export functionality
 
@@ -531,6 +553,7 @@ docker run -d \
   -p 8501:8501 \
   -v $(pwd)/data:/app/data \
   -e GROQ_API_KEY=your_key_here \
+  -e NEWSAPI_KEY=your_newsapi_key_here \  
   --name market-agent \
   llm-market-agent
 ```
