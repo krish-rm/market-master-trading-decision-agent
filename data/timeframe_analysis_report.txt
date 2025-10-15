@@ -7,13 +7,13 @@ MULTI-TIMEFRAME DATA ANALYSIS REPORT
 ### 4H Timeframe
 - Interval: 4h
 - Period: 30d
-- Total Rows: 177
+- Total Rows: 180
 - Symbols: AAPL, QQQ, SPY
-- Date Range: 2025-09-04 09:30:00-04:00 to 2025-10-15 09:30:00-04:00
+- Date Range: 2025-09-04 09:30:00-04:00 to 2025-10-15 13:30:00-04:00
 - Price Statistics:
-  * AAPL: Mean=$246.95, Std=$9.49
-  * QQQ: Mean=$594.98, Std=$10.17
-  * SPY: Mean=$661.43, Std=$7.24
+  * AAPL: Mean=$246.93, Std=$9.39
+  * QQQ: Mean=$594.92, Std=$9.99
+  * SPY: Mean=$661.31, Std=$7.10
 
 ### 1D Timeframe
 - Interval: 1d
@@ -22,9 +22,9 @@ MULTI-TIMEFRAME DATA ANALYSIS REPORT
 - Symbols: AAPL, QQQ, SPY
 - Date Range: 2025-06-09 00:00:00-04:00 to 2025-10-15 00:00:00-04:00
 - Price Statistics:
-  * AAPL: Mean=$224.85, Std=$19.42
-  * QQQ: Mean=$569.71, Std=$22.74
-  * SPY: Mean=$636.47, Std=$22.14
+  * AAPL: Mean=$224.82, Std=$19.39
+  * QQQ: Mean=$569.64, Std=$22.63
+  * SPY: Mean=$636.40, Std=$22.04
 
 ### 1W Timeframe
 - Interval: 1wk
@@ -33,18 +33,18 @@ MULTI-TIMEFRAME DATA ANALYSIS REPORT
 - Symbols: AAPL, QQQ, SPY
 - Date Range: 2024-04-29 00:00:00-04:00 to 2025-10-13 00:00:00-04:00
 - Price Statistics:
-  * AAPL: Mean=$221.02, Std=$18.69
-  * QQQ: Mean=$506.73, Std=$45.31
-  * SPY: Mean=$579.55, Std=$42.86
+  * AAPL: Mean=$220.99, Std=$18.65
+  * QQQ: Mean=$506.75, Std=$45.36
+  * SPY: Mean=$579.46, Std=$42.68
 
 ## Comparative Analysis
 
 ### Timeframe Comparison Table
 
 timeframe  total_rows  symbols  date_range_days   avg_volume  price_volatility  AAPL_price_change_pct  AAPL_volume_trend  QQQ_price_change_pct  QQQ_volume_trend  SPY_price_change_pct  SPY_volume_trend
-       4h         177        3               41 2.557685e+07          8.962460               5.490677       2.002643e+07              5.835635      2.286830e+07              3.449151      3.383582e+07
-       1d         270        3              128 5.789371e+07         21.431313              24.752987       5.414501e+07             14.508117      4.771370e+07             12.228009      7.182240e+07
-       1w         231        3              532 2.468788e+08         35.619897              37.873630       2.648456e+08             38.474602      1.896208e+08             33.294944      2.861700e+08
+       4h         180        3               41 2.551291e+07          8.830291               4.551759       1.983143e+07              4.641986      2.293512e+07              2.402496      3.377217e+07
+       1d         270        3              128 5.813655e+07         21.350615              23.689483       5.423750e+07             13.246529      4.801219e+07             11.096238      7.215998e+07
+       1w         231        3              532 2.472373e+08         35.560846              36.698297       2.649537e+08             38.852041      1.901937e+08             31.966221      2.865646e+08
 
 ## Recommendations
 

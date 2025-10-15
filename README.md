@@ -173,6 +173,7 @@ This project demonstrates production-quality LLM engineering with RAG, multi-tim
 ### Prerequisites
 - Python 3.10 or higher
 - Groq API key (get free at [console.groq.com](https://console.groq.com))
+- NewsAPI key (get free at [newsapi.org](https://newsapi.org)) - Optional for RAG news context
 - Git
 
 ### Option 1: Local Setup
@@ -212,8 +213,9 @@ cp ENV_EXAMPLE.txt .env
 git clone https://github.com/your-username/market-master-trading-decision-agent.git
 cd market-master-trading-decision-agent
 
-# Create .env file with your API key
-echo "GROQ_API_KEY=your_key_here" > .env
+# Create .env file with your API keys
+echo "GROQ_API_KEY=your_groq_key_here" > .env
+echo "NEWSAPI_KEY=your_newsapi_key_here" >> .env
 
 # Build and run
 docker-compose up -d

@@ -2,6 +2,15 @@
   "news_articles": [
     {
       "symbol": "SPY",
+      "title": "Stocks Turn Mixed as Walmart-OpenAI Deal Pushes Dow Higher",
+      "description": "The S&P 500 Index ($SPX ) (SPY ) today is up 0.09%, the Dow Jones Industrials Index ($DOWI ) (DIA ) is up 0.54%, and the Nasdaq-100 Index ($IUXX ) (QQQ ) is ...",
+      "url": "https://www.barchart.com/story/news/35436979/stocks-pressured-from-us-china-trade-dispute",
+      "published_at": "2025-10-14T15:16:59Z",
+      "source": "Barchart.com",
+      "similarity_score": 0.75
+    },
+    {
+      "symbol": "SPY",
       "title": "The Fidelity Dividend ETF beating Vanguard and Schwab in 2025",
       "description": "For years, the dividend ETF leaderboard seemed locked in place. The Vanguard Dividend Appreciation ETF (VIG), the Vanguard High Dividend Yield ETF (VYM), and...",
       "url": "https://www.thestreet.com/investing/the-fidelity-dividend-etf-beating-vanguard-and-schwab-in-2025",
@@ -37,11 +46,11 @@
       "similarity_score": 0.75
     },
     {
-      "symbol": "SPY",
-      "title": "Stocks Rebound as President Trump Softens China Rhetoric",
-      "description": "The S&P 500 Index ($SPX ) (SPY ) today is up +1.22%, the Dow Jones Industrials Index ($DOWI ) (DIA ) is up +0.91%, and the Nasdaq 100 Index ($IUXX ) (QQQ...",
-      "url": "https://www.barchart.com/story/news/35407923/stocks-rebound-as-president-trump-softens-china-rhetoric",
-      "published_at": "2025-10-13T14:04:26Z",
+      "symbol": "QQQ",
+      "title": "Stocks Turn Mixed as Walmart-OpenAI Deal Pushes Dow Higher",
+      "description": "The S&P 500 Index ($SPX ) (SPY ) today is up 0.09%, the Dow Jones Industrials Index ($DOWI ) (DIA ) is up 0.54%, and the Nasdaq-100 Index ($IUXX ) (QQQ ) is ...",
+      "url": "https://www.barchart.com/story/news/35436979/stocks-pressured-from-us-china-trade-dispute",
+      "published_at": "2025-10-14T15:16:59Z",
       "source": "Barchart.com",
       "similarity_score": 0.75
     },
@@ -82,12 +91,12 @@
       "similarity_score": 0.75
     },
     {
-      "symbol": "QQQ",
-      "title": "U.S. stock market futures soar after $2 trillion market wipeout last week as Trump softens China stance \u2014 Dow, S&P 500, Nasdaq surge; Tech giants AMD and Nvidia lead premarket recovery",
-      "description": "U.S. stock market futures soared Monday, rebounding after a $2 trillion wipeout last week. President Donald Trump\u2019s softer tone on China trade tensions boosted investor sentiment. Dow futures jumped over 400 points, while S&P 500 and Nasdaq futures climbed sh\u2026",
-      "url": "https://economictimes.indiatimes.com/news/international/us/u-s-stock-market-futures-soar-after-2-trillion-market-wipeout-last-week-as-trump-softens-china-stance-dow-sp-500-nasdaq-surge-tech-giants-amd-and-nvidia-lead-premarket-recovery-as-investors-bet-u-s-china-tensions-may-cool/articleshow/124525386.cms",
-      "published_at": "2025-10-13T11:24:30Z",
-      "source": "The Times of India",
+      "symbol": "AAPL",
+      "title": "Stocks Turn Mixed as Walmart-OpenAI Deal Pushes Dow Higher",
+      "description": "The S&P 500 Index ($SPX ) (SPY ) today is up 0.09%, the Dow Jones Industrials Index ($DOWI ) (DIA ) is up 0.54%, and the Nasdaq-100 Index ($IUXX ) (QQQ ) is ...",
+      "url": "https://www.barchart.com/story/news/35436979/stocks-pressured-from-us-china-trade-dispute",
+      "published_at": "2025-10-14T15:16:59Z",
+      "source": "Barchart.com",
       "similarity_score": 0.75
     },
     {
@@ -125,17 +134,8 @@
       "published_at": "2025-10-13T23:33:14Z",
       "source": "Yahoo Entertainment",
       "similarity_score": 0.75
-    },
-    {
-      "symbol": "AAPL",
-      "title": "Stock market today: S&P 500 and Dow turn higher, Nasdaq dips with Fed's Powell, China tariff tensions in focus",
-      "description": "China upped the ante in its trade spat with the US, rattling investors' nerves as big Wall Street banks kicked off earnings season.",
-      "url": "https://finance.yahoo.com/news/live/stock-market-today-sp-500-and-dow-turn-higher-nasdaq-dips-with-feds-powell-china-tariff-tensions-in-focus-233314697.html",
-      "published_at": "2025-10-13T23:33:14Z",
-      "source": "Yahoo Entertainment",
-      "similarity_score": 0.75
     }
   ],
-  "timestamp": "2025-10-15T20:08:32.310207",
+  "timestamp": "2025-10-15T17:36:15.013929",
   "source": "simple_retriever"
 }

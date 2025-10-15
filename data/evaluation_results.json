@@ -2,35 +2,35 @@
 
 ## Summary
 
-- **Total Samples**: 75
+- **Total Samples**: 84
 - **API Mode Usage**: 0.0%
 
 ### Confidence Distribution:
-- Medium: 73
+- Medium: 82
 - Low: 2
 
 ## Text Quality Metrics
 
 ### Basic Similarity Score
-- **Mean**: 0.121 ± 0.030
-- **Range**: 0.000 - 0.172
+- **Mean**: 0.124 Â± 0.032
+- **Range**: 0.000 - 0.194
 
 ## Confidence Calibration
 
 ### Low Confidence
 - **Count**: 2
 - **Accuracy**: 45.0%
-- **Avg WSS**: 0.263
+- **Avg WSS**: 0.357
 ### Medium Confidence
-- **Count**: 73
+- **Count**: 82
 - **Accuracy**: 60.0%
-- **Avg WSS**: 0.344
+- **Avg WSS**: 0.343
 
 ## Consistency Analysis
 
 ### Bearish Market Conditions
-- **Count**: 44
-- **Avg WSS**: 0.270
+- **Count**: 49
+- **Avg WSS**: 0.276
 ### Neutral Market Conditions
-- **Count**: 31
-- **Avg WSS**: 0.444
+- **Count**: 35
+- **Avg WSS**: 0.437
